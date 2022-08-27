@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace HelloNico\Brotli;
 
+use HelloNico\Brotli\Exception\InvalidBinaryException;
 use Symfony\Component\Process\Exception\ExceptionInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use HelloNico\Brotli\Exception\BrotliException;
@@ -13,8 +14,15 @@ use loophp\phposinfo\OsInfo;
 
 final class Brotli
 {
-    public static $binaryPath;
-    private static $binaryName = 'brotli';
+    /**
+     * @var string
+     */
+    public static string $binaryPath;
+
+    /**
+     * @var string
+     */
+    private static string $binaryName = 'brotli';
 
     /**
      * @param string $binaryPath By default, the "brotli" binary in the OS Path is used. You can change this behavior.
@@ -54,11 +62,7 @@ final class Brotli
     private static function runBinary(array $arguments, string $stdin): string
     {
         if (null === self::$binaryPath) {
-            try {
-                self::setBinaryPath(self::getPackageBinaryPath());
-            } catch (\Exception $exception) {
-                // Fallback to system brotli if it exists
-            }
+            self::setBinaryPath(self::getPackageBinaryPath());
         }
 
         array_unshift($arguments, self::$binaryPath);
@@ -77,13 +81,13 @@ final class Brotli
         return $proc->getOutput();
     }
 
+
     /**
      * Get binary path
      *
-     * @throws Exception
      * @return string
      */
-    public static function getPackageBinaryPath()
+    public static function getPackageBinaryPath(): string
     {
         if (null !== self::$binaryPath) {
             return self::$binaryPath;
@@ -98,13 +102,13 @@ final class Brotli
         } elseif (OsInfo::isFamily(FamilyName::DARWIN)) {
             array_push($binaryPath, 'osx', $arch, self::$binaryName);
         } elseif (OsInfo::isFamily(FamilyName::WINDOWS)) {
-            array_push($binaryPath, 'windows', $arch, self::$binaryName.'.exe');
+            array_push($binaryPath, 'windows', $arch, self::$binaryName . '.exe');
         }
 
         $binaryPath = implode(DIRECTORY_SEPARATOR, $binaryPath);
 
         if (!is_file($binaryPath)) {
-            throw new \Exception("No binary available for your system");
+            throw InvalidBinaryException::create($binaryPath);
         }
 
         return self::$binaryPath = $binaryPath;

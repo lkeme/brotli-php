@@ -1,5 +1,5 @@
 {
-    "name": "hellonico/brotli",
+    "name": "lkeme/brotli",
     "type": "library",
     "description": "Add brotli compress/uncompress functions to PHP. Batteries included.",
     "keywords": [
@@ -9,7 +9,14 @@
     "authors": [
         {
             "name": "Nicolas Lemoine",
-            "email": "tech@niconico.fr"
+            "email": "tech@niconico.fr",
+            "role": "Developer"
+        },
+        {
+            "name": "Lkeme",
+            "email": "Useri@live.cn",
+            "homepage": "https://mudew.com",
+            "role": "Developer"
         }
     ],
     "require": {

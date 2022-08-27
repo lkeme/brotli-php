@@ -1,0 +1,1 @@
+brotil: ELF 64-bit LSB executable, ARM aarch64, version 1 (GNU/Linux), statically linked, BuildID[sha1]=fba2c577de0f1dc04913aa93fe13716934979c67, for GNU/Linux 3.7.0, stripped

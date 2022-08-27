@@ -1,4 +1,4 @@
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/nlemoine/brotli-php/Tests?style=flat-square)](https://github.com/nlemoine/brotli-php/actions/workflows/tests.yml?query=branch%3Amaster+workflow%3ATests)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/lkeme/brotli-php/Tests?style=flat-square)](https://github.com/nlemoine/brotli-php/actions/workflows/tests.yml?query=branch%3Amaster+workflow%3ATests)
 
 This library adds Brotli support to PHP (^7.4 || ^8.0). Batteries included.
 
@@ -25,7 +25,7 @@ $ composer require hellonico/brotli
 
 Prebuilt binaries included for the following systems:
 
-- Linux (x86_64/i386)
+- Linux (x86_64/i386/aarch64/armv7)
 - Mac OS
 - Windows
 
